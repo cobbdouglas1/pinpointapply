@@ -25,20 +25,20 @@ const Hero = () => {
               </span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gray-900 leading-tight mb-6">
-              AI-crafted CVs &<br /> Cover Letters
+              Land interviews faster
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-lg">
-              Apply faster. Get hired sooner. Let our AI tailor your job applications to maximize your chance of landing interviews.
+              Save time with AI-personalized applications for every job.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <Link to="/dashboard" className="primary-button group">
                 <span className="flex items-center justify-center">
-                  Start Now
+                  Get Started Free
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 transform group-hover:translate-x-1" />
                 </span>
               </Link>
               <Link to="/samples" className="secondary-button">
-                See Samples
+                See Examples
               </Link>
             </div>
           </div>
