@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
@@ -7,7 +6,7 @@ import {
   User,
   FileText,
   FilePenLine,
-  ClockHistory,
+  Clock,
   Settings,
   LogOut,
   HelpCircle,
@@ -39,7 +38,7 @@ const navItems = [
   {
     title: 'History',
     path: '/dashboard/history',
-    icon: ClockHistory,
+    icon: Clock,
   },
 ];
 
