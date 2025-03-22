@@ -1,6 +1,6 @@
 
 import { ReactNode, useState } from 'react';
-import Sidebar from './Sidebar';
+import Sidebar from './sidebar';
 import { Menu } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
