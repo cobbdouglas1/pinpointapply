@@ -1,5 +1,13 @@
 
 import { LucideIcon } from 'lucide-react';
+import {
+  User,
+  FileText,
+  FilePenLine,
+  Clock,
+  Settings,
+  HelpCircle,
+} from 'lucide-react';
 
 export interface SidebarProps {
   isOpen: boolean;
@@ -16,22 +24,22 @@ export const navItems: NavItem[] = [
   {
     title: 'Career Profile',
     path: '/dashboard/profile',
-    icon: 'User',
+    icon: User,
   },
   {
     title: 'CV Generator',
     path: '/dashboard/cv',
-    icon: 'FileText',
+    icon: FileText,
   },
   {
     title: 'Cover Letter Generator',
     path: '/dashboard/cover-letter',
-    icon: 'FilePenLine',
+    icon: FilePenLine,
   },
   {
     title: 'History',
     path: '/dashboard/history',
-    icon: 'Clock',
+    icon: Clock,
   },
 ];
 
@@ -39,11 +47,11 @@ export const bottomNavItems: NavItem[] = [
   {
     title: 'Settings',
     path: '/dashboard/settings',
-    icon: 'Settings',
+    icon: Settings,
   },
   {
     title: 'Help & Support',
     path: '/dashboard/help',
-    icon: 'HelpCircle',
+    icon: HelpCircle,
   },
 ];

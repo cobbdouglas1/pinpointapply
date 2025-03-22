@@ -1,34 +1,10 @@
 
 import { Link, NavLink } from 'react-router-dom';
-import {
-  ChevronLeft,
-  ChevronRight,
-  LogOut,
-  User,
-  FileText,
-  FilePenLine,
-  Clock,
-  Settings,
-  HelpCircle,
-} from 'lucide-react';
+import { ChevronLeft, ChevronRight, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { SidebarProps, navItems, bottomNavItems } from './types';
 
 const DesktopSidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
-  // Map icon strings to actual components
-  const getIcon = (iconName: string) => {
-    const iconMap = {
-      User,
-      FileText,
-      FilePenLine,
-      Clock,
-      Settings,
-      HelpCircle,
-    };
-    
-    return iconMap[iconName as keyof typeof iconMap];
-  };
-  
   return (
     <div 
       className={cn(
@@ -65,7 +41,7 @@ const DesktopSidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
       <div className="flex-1 flex flex-col justify-between py-4 overflow-y-auto">
         <nav className="px-2 space-y-1">
           {navItems.map((item) => {
-            const IconComponent = getIcon(item.icon as string);
+            const IconComponent = item.icon;
             return (
               <NavLink
                 key={item.title}
@@ -103,7 +79,7 @@ const DesktopSidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
         
         <div className="px-2 space-y-1">
           {bottomNavItems.map((item) => {
-            const IconComponent = getIcon(item.icon as string);
+            const IconComponent = item.icon;
             return (
               <NavLink
                 key={item.title}
