@@ -143,7 +143,7 @@ const HowItWorks = () => {
         </div>
         
         <div className="text-center">
-          <Link to="/signup" className="primary-button inline-flex items-center group">
+          <Link to="/dashboard" className="primary-button inline-flex items-center group">
             <span>Get Started</span>
             <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 transform group-hover:translate-x-1" />
           </Link>

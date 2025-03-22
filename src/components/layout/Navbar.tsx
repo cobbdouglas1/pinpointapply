@@ -25,9 +25,9 @@ const Navbar = () => {
   const isActive = (path: string) => location.pathname === path;
   
   const navLinks = [
-    { name: 'Features', path: '/features' },
-    { name: 'How it works', path: '/how-it-works' },
-    { name: 'Pricing', path: '/pricing' },
+    { name: 'Features', path: '/#features' },
+    { name: 'How it works', path: '/#how-it-works' },
+    { name: 'Pricing', path: '/#pricing' },
     { name: 'FAQ', path: '/faq' },
   ];
 
@@ -65,7 +65,7 @@ const Navbar = () => {
                 Log in
               </Button>
             </Link>
-            <Link to="/signup">
+            <Link to="/dashboard">
               <Button className="bg-primary hover:bg-primary/90 text-white font-medium">
                 Sign up
               </Button>
@@ -107,7 +107,7 @@ const Navbar = () => {
                   Log in
                 </Button>
               </Link>
-              <Link to="/signup">
+              <Link to="/dashboard">
                 <Button className="w-full justify-center">
                   Sign up
                 </Button>

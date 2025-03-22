@@ -31,7 +31,7 @@ const Hero = () => {
               Apply faster. Get hired sooner. Let our AI tailor your job applications to maximize your chance of landing interviews.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <Link to="/signup" className="primary-button group">
+              <Link to="/dashboard" className="primary-button group">
                 <span className="flex items-center justify-center">
                   Start Now
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 transform group-hover:translate-x-1" />
