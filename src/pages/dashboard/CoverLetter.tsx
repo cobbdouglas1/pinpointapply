@@ -4,6 +4,8 @@ import DashboardLayout from '@/components/dashboard/Dashboard';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { FilePenLine, Download, Edit, Plus } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 
 const CoverLetter = () => {
   const [selectedCV, setSelectedCV] = useState<string | null>(null);
@@ -21,52 +23,28 @@ const CoverLetter = () => {
           <CardContent className="space-y-6">
             <div>
               <h3 className="text-sm font-medium mb-3">1. Select a CV</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div 
-                  className={`border rounded-md p-3 cursor-pointer transition-all ${selectedCV === 'frontend' ? 'border-primary ring-1 ring-primary/20' : 'hover:border-gray-300'}`}
-                  onClick={() => setSelectedCV('frontend')}
-                >
-                  <div className="aspect-[3/4] bg-white border rounded-md p-2 mb-2">
-                    <div className="h-3 w-20 bg-gray-200 rounded mb-2"></div>
-                    <div className="h-2 w-full bg-gray-200 rounded mb-1"></div>
-                    <div className="h-2 w-4/5 bg-gray-200 rounded mb-3"></div>
-                  </div>
-                  <div className="text-center text-sm font-medium">Frontend Developer CV</div>
-                </div>
-                
-                <div 
-                  className={`border rounded-md p-3 cursor-pointer transition-all ${selectedCV === 'ux' ? 'border-primary ring-1 ring-primary/20' : 'hover:border-gray-300'}`}
-                  onClick={() => setSelectedCV('ux')}
-                >
-                  <div className="aspect-[3/4] bg-white border rounded-md p-2 mb-2">
-                    <div className="flex mb-2">
-                      <div className="w-1/3 bg-gray-100 h-full py-2 px-1">
-                        <div className="h-3 w-full bg-gray-200 rounded mb-2"></div>
-                      </div>
-                      <div className="w-2/3 p-1">
-                        <div className="h-2.5 w-1/2 bg-gray-200 rounded mb-2"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-center text-sm font-medium">UX Designer CV</div>
-                </div>
-              </div>
+              <Select onValueChange={value => setSelectedCV(value)}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Choose a CV template" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="frontend">Frontend Developer CV</SelectItem>
+                  <SelectItem value="ux">UX Designer CV</SelectItem>
+                  <SelectItem value="product">Product Manager CV</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             
             <div>
               <h3 className="text-sm font-medium mb-3">2. Job Application Details</h3>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-1">Company Name</label>
-                  <input type="text" className="w-full p-2 border rounded-md" placeholder="Company Inc." />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1">Position</label>
-                  <input type="text" className="w-full p-2 border rounded-md" placeholder="Frontend Developer" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1">Key Requirements</label>
-                  <textarea className="w-full p-2 border rounded-md" rows={3} placeholder="List the key requirements from the job post..."></textarea>
+                  <label className="block text-sm font-medium mb-1">Company/Team-Related Information</label>
+                  <Textarea 
+                    className="w-full" 
+                    rows={3} 
+                    placeholder="Add researched information about the company culture, team dynamics, or any insider information that could help personalize your cover letter..."
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-1">Recipient (if known)</label>
@@ -77,17 +55,54 @@ const CoverLetter = () => {
             
             <div>
               <h3 className="text-sm font-medium mb-3">3. Cover Letter Style</h3>
-              <div className="grid grid-cols-3 gap-3">
-                <div className="border rounded-md p-3 cursor-pointer bg-gray-50">
-                  <div className="text-center text-sm font-medium">Professional</div>
-                </div>
-                <div className="border rounded-md p-3 cursor-pointer">
-                  <div className="text-center text-sm font-medium">Friendly</div>
-                </div>
-                <div className="border rounded-md p-3 cursor-pointer">
-                  <div className="text-center text-sm font-medium">Enthusiastic</div>
-                </div>
-              </div>
+              <Select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Choose a style" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="professional">Professional</SelectItem>
+                  <SelectItem value="friendly">Friendly</SelectItem>
+                  <SelectItem value="enthusiastic">Enthusiastic</SelectItem>
+                  <SelectItem value="formal">Formal</SelectItem>
+                  <SelectItem value="creative">Creative</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium mb-1">Additional Customization Instructions</label>
+              <Textarea 
+                className="w-full" 
+                rows={2} 
+                placeholder="Any specific instructions on how you want your cover letter to be customized..."
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium mb-1">Why This Opportunity Excites You</label>
+              <Textarea 
+                className="w-full" 
+                rows={3} 
+                placeholder="Write 3-5 sentences explaining why you're excited about this specific opportunity and what attracts you to the company..."
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium mb-1">Your Personal Value Proposition</label>
+              <Textarea 
+                className="w-full" 
+                rows={3} 
+                placeholder="Describe in 3-5 sentences what unique strengths, skills, or experiences you bring to the role..."
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium mb-1">Optional Personal Touch</label>
+              <Textarea 
+                className="w-full" 
+                rows={2} 
+                placeholder="Share any personal anecdotes, fun facts, or brief stories (2-3 sentences) that showcase your personality..."
+              />
             </div>
           </CardContent>
           <CardFooter>

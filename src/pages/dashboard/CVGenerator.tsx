@@ -64,13 +64,9 @@ const CVGenerator = () => {
                     Or upload the job description as a PDF/DOC
                   </p>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1">Key Skills Required</label>
-                  <input type="text" className="w-full p-2 border rounded-md" placeholder="React, JavaScript, Team Leadership" />
-                  <p className="text-xs text-gray-500 mt-1">
-                    Comma-separated list of skills mentioned in the job description
-                  </p>
-                </div>
+                <Button className="ml-auto">
+                  <FileText className="mr-2 h-4 w-4" /> Generate CV
+                </Button>
               </CardContent>
             </Card>
             
@@ -82,62 +78,48 @@ const CVGenerator = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="border rounded-md p-3 cursor-pointer bg-gray-50">
-                    <div className="aspect-[3/4] bg-white border rounded-md p-2 mb-2">
-                      <div className="h-3 w-20 bg-gray-200 rounded mb-2"></div>
-                      <div className="h-2 w-full bg-gray-200 rounded mb-1"></div>
-                      <div className="h-2 w-4/5 bg-gray-200 rounded mb-3"></div>
-                      <div className="h-2.5 w-1/3 bg-gray-300 rounded mb-2"></div>
-                      <div className="h-2 w-full bg-gray-200 rounded mb-1"></div>
-                      <div className="h-2 w-full bg-gray-200 rounded mb-1"></div>
+                <div className="grid grid-cols-4 gap-4">
+                  <div className="border rounded-md p-2 cursor-pointer bg-gray-50">
+                    <div className="aspect-[3/4] bg-white border rounded-md p-1 mb-1">
+                      <div className="h-2 w-10 bg-gray-200 rounded mb-1"></div>
+                      <div className="h-1 w-full bg-gray-200 rounded mb-1"></div>
+                      <div className="h-1 w-4/5 bg-gray-200 rounded mb-1"></div>
                     </div>
-                    <div className="text-center text-sm font-medium">Professional</div>
+                    <div className="text-center text-xs font-medium">Professional</div>
                   </div>
                   
-                  <div className="border rounded-md p-3 cursor-pointer">
-                    <div className="aspect-[3/4] bg-white border rounded-md p-2 mb-2">
-                      <div className="flex mb-2">
-                        <div className="w-1/3 bg-gray-100 h-full py-2 px-1">
-                          <div className="h-3 w-full bg-gray-200 rounded mb-2"></div>
-                          <div className="h-2 w-full bg-gray-200 rounded mb-1"></div>
+                  <div className="border rounded-md p-2 cursor-pointer">
+                    <div className="aspect-[3/4] bg-white border rounded-md p-1 mb-1">
+                      <div className="flex mb-1">
+                        <div className="w-1/3 bg-gray-100 h-full p-0.5">
+                          <div className="h-1.5 w-full bg-gray-200 rounded mb-1"></div>
                         </div>
-                        <div className="w-2/3 p-1">
-                          <div className="h-2.5 w-1/2 bg-gray-200 rounded mb-2"></div>
-                          <div className="h-2 w-full bg-gray-200 rounded mb-1"></div>
+                        <div className="w-2/3 p-0.5">
+                          <div className="h-1 w-1/2 bg-gray-200 rounded mb-1"></div>
                         </div>
                       </div>
                     </div>
-                    <div className="text-center text-sm font-medium">Modern</div>
+                    <div className="text-center text-xs font-medium">Modern</div>
                   </div>
                   
-                  <div className="border rounded-md p-3 cursor-pointer">
-                    <div className="aspect-[3/4] bg-white border rounded-md p-2 mb-2">
-                      <div className="h-4 w-full bg-gray-200 rounded-sm mb-2"></div>
-                      <div className="h-2 w-full bg-gray-200 rounded mb-1"></div>
-                      <div className="h-2 w-4/5 bg-gray-200 rounded mb-3"></div>
-                      <div className="h-2.5 w-1/3 bg-gray-300 rounded mb-2"></div>
-                      <div className="h-2 w-full bg-gray-200 rounded mb-1"></div>
+                  <div className="border rounded-md p-2 cursor-pointer">
+                    <div className="aspect-[3/4] bg-white border rounded-md p-1 mb-1">
+                      <div className="h-2 w-full bg-gray-200 rounded-sm mb-1"></div>
+                      <div className="h-1 w-full bg-gray-200 rounded mb-0.5"></div>
+                      <div className="h-1 w-4/5 bg-gray-200 rounded mb-1"></div>
                     </div>
-                    <div className="text-center text-sm font-medium">Classic</div>
+                    <div className="text-center text-xs font-medium">Classic</div>
                   </div>
                   
-                  <div className="border rounded-md p-3 cursor-pointer">
-                    <div className="aspect-[3/4] bg-white border rounded-md p-2 mb-2">
-                      <div className="h-5 w-1/3 bg-gray-300 rounded mb-2 mx-auto"></div>
-                      <div className="h-2 w-4/5 bg-gray-200 rounded mb-3 mx-auto"></div>
-                      <div className="h-2 w-full bg-gray-200 rounded mb-1"></div>
-                      <div className="h-2 w-full bg-gray-200 rounded mb-1"></div>
+                  <div className="border rounded-md p-2 cursor-pointer">
+                    <div className="aspect-[3/4] bg-white border rounded-md p-1 mb-1">
+                      <div className="h-2 w-1/3 bg-gray-300 rounded mb-1 mx-auto"></div>
+                      <div className="h-1 w-4/5 bg-gray-200 rounded mb-1 mx-auto"></div>
                     </div>
-                    <div className="text-center text-sm font-medium">Minimal</div>
+                    <div className="text-center text-xs font-medium">Minimal</div>
                   </div>
                 </div>
               </CardContent>
-              <CardFooter>
-                <Button className="w-full">
-                  <FileText className="mr-2 h-4 w-4" /> Generate CV
-                </Button>
-              </CardFooter>
             </Card>
           </div>
         )}
