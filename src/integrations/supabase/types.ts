@@ -9,7 +9,151 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      career_profiles: {
+        Row: {
+          awards: Json | null
+          career_objective: string | null
+          certifications: Json | null
+          created_at: string
+          education: Json
+          extras: Json | null
+          id: string
+          languages: Json
+          projects: Json | null
+          skills_hard: Json
+          skills_soft: Json
+          user_id: string
+          volunteering: Json | null
+          work_experience: Json
+        }
+        Insert: {
+          awards?: Json | null
+          career_objective?: string | null
+          certifications?: Json | null
+          created_at?: string
+          education?: Json
+          extras?: Json | null
+          id?: string
+          languages?: Json
+          projects?: Json | null
+          skills_hard?: Json
+          skills_soft?: Json
+          user_id: string
+          volunteering?: Json | null
+          work_experience?: Json
+        }
+        Update: {
+          awards?: Json | null
+          career_objective?: string | null
+          certifications?: Json | null
+          created_at?: string
+          education?: Json
+          extras?: Json | null
+          id?: string
+          languages?: Json
+          projects?: Json | null
+          skills_hard?: Json
+          skills_soft?: Json
+          user_id?: string
+          volunteering?: Json | null
+          work_experience?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "career_profiles_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      generated_docs: {
+        Row: {
+          additional_notes: string | null
+          company_info: string | null
+          created_at: string
+          doc_type: string
+          final_doc_url: string
+          id: string
+          personal_touch: string | null
+          template_used: string
+          user_id: string
+          value_proposition: string | null
+        }
+        Insert: {
+          additional_notes?: string | null
+          company_info?: string | null
+          created_at?: string
+          doc_type: string
+          final_doc_url: string
+          id?: string
+          personal_touch?: string | null
+          template_used: string
+          user_id: string
+          value_proposition?: string | null
+        }
+        Update: {
+          additional_notes?: string | null
+          company_info?: string | null
+          created_at?: string
+          doc_type?: string
+          final_doc_url?: string
+          id?: string
+          personal_touch?: string | null
+          template_used?: string
+          user_id?: string
+          value_proposition?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "generated_docs_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      users: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string
+          github_url: string | null
+          id: string
+          linkedin_url: string | null
+          location_city: string
+          location_country: string
+          phone: string
+          professional_headline: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name: string
+          github_url?: string | null
+          id: string
+          linkedin_url?: string | null
+          location_city: string
+          location_country: string
+          phone: string
+          professional_headline?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string
+          github_url?: string | null
+          id?: string
+          linkedin_url?: string | null
+          location_city?: string
+          location_country?: string
+          phone?: string
+          professional_headline?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
