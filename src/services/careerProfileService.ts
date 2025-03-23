@@ -1,5 +1,5 @@
 
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/integrations/supabase/client';
 import type { Tables } from '@/lib/supabase';
 
 export type CareerProfile = Omit<Tables['career_profiles'], 'created_at'>;
