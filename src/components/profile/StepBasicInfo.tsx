@@ -7,6 +7,7 @@ import {
   FormLabel, 
   FormControl,
   FormDescription,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
@@ -20,48 +21,65 @@ const StepBasicInfo = ({ form }: StepBasicInfoProps) => {
       <FormField
         control={form.control}
         name="fullName"
+        rules={{ required: "Full name is required" }}
         render={({ field }) => (
           <FormItem>
             <FormLabel>Full Name *</FormLabel>
             <FormControl>
               <Input placeholder="John Doe" {...field} />
             </FormControl>
+            <FormMessage />
           </FormItem>
         )}
       />
       <FormField
         control={form.control}
         name="email"
+        rules={{ 
+          required: "Email is required",
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: "Invalid email address"
+          }
+        }}
         render={({ field }) => (
           <FormItem>
             <FormLabel>Email Address *</FormLabel>
             <FormControl>
               <Input type="email" placeholder="email@example.com" {...field} />
             </FormControl>
+            <FormMessage />
           </FormItem>
         )}
       />
       <FormField
         control={form.control}
         name="phone"
+        rules={{ required: "Phone number is required" }}
         render={({ field }) => (
           <FormItem>
             <FormLabel>Phone Number *</FormLabel>
             <FormControl>
               <Input type="tel" placeholder="+1 234 567 8901" {...field} />
             </FormControl>
+            <FormMessage />
           </FormItem>
         )}
       />
       <FormField
         control={form.control}
         name="location"
+        rules={{ required: "Location is required" }}
         render={({ field }) => (
           <FormItem>
             <FormLabel>Location *</FormLabel>
             <FormControl>
               <Input placeholder="City, Country" {...field} />
             </FormControl>
+            <FormDescription>
+              Please enter in the format "City, Country"
+            </FormDescription>
+            <FormMessage />
           </FormItem>
         )}
       />

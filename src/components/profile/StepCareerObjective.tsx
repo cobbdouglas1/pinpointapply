@@ -7,6 +7,7 @@ import {
   FormLabel, 
   FormControl,
   FormDescription,
+  FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -20,6 +21,7 @@ const StepCareerObjective = ({ form }: StepCareerObjectiveProps) => {
       <FormField
         control={form.control}
         name="careerObjective"
+        rules={{ required: "Career objective is required" }}
         render={({ field }) => (
           <FormItem>
             <FormLabel>Career Objective/Personal Summary *</FormLabel>
@@ -33,6 +35,7 @@ const StepCareerObjective = ({ form }: StepCareerObjectiveProps) => {
             <FormDescription>
               This will appear at the top of your CV and helps employers understand your professional brand
             </FormDescription>
+            <FormMessage />
           </FormItem>
         )}
       />
