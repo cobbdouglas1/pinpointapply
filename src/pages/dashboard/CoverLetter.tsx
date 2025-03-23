@@ -1,14 +1,30 @@
 
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import DashboardLayout from '@/components/dashboard/Dashboard';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { FilePenLine, Download, Edit, Plus } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { Form } from '@/components/ui/form';
+import { Label } from '@/components/ui/label';
 
 const CoverLetter = () => {
   const [selectedCV, setSelectedCV] = useState<string | null>(null);
+  
+  const form = useForm({
+    defaultValues: {
+      selectedCV: "",
+      companyInfo: "",
+      recipient: "",
+      style: "",
+      customization: "",
+      opportunity: "",
+      valueProposition: "",
+      personalTouch: ""
+    }
+  });
   
   return (
     <DashboardLayout title="Cover Letter Generator">
@@ -20,96 +36,100 @@ const CoverLetter = () => {
               Generate a personalized cover letter based on your CV and job description
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div>
-              <h3 className="text-sm font-medium mb-3">1. Select a CV</h3>
-              <Select onValueChange={value => setSelectedCV(value)}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Choose a CV template" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="frontend">Frontend Developer CV</SelectItem>
-                  <SelectItem value="ux">UX Designer CV</SelectItem>
-                  <SelectItem value="product">Product Manager CV</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            
-            <div>
-              <h3 className="text-sm font-medium mb-3">2. Job Application Details</h3>
-              <div className="space-y-4">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(() => console.log("Cover letter generated"))}>
+              <CardContent className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium mb-1">Company/Team-Related Information</label>
+                  <h3 className="text-sm font-medium mb-3">1. Select a CV</h3>
+                  <Select onValueChange={value => setSelectedCV(value)}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Choose a CV template" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="frontend">Frontend Developer CV</SelectItem>
+                      <SelectItem value="ux">UX Designer CV</SelectItem>
+                      <SelectItem value="product">Product Manager CV</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div>
+                  <h3 className="text-sm font-medium mb-3">2. Job Application Details</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <Label className="block text-sm font-medium mb-1">Company/Team-Related Information</Label>
+                      <Textarea 
+                        className="w-full" 
+                        rows={3} 
+                        placeholder="Add researched information about the company culture, team dynamics, or any insider information that could help personalize your cover letter..."
+                      />
+                    </div>
+                    <div>
+                      <Label className="block text-sm font-medium mb-1">Recipient (if known)</Label>
+                      <input type="text" className="w-full p-2 border rounded-md" placeholder="Hiring Manager / Name" />
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-sm font-medium mb-3">3. Cover Letter Style</h3>
+                  <Select>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Choose a style" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="professional">Professional</SelectItem>
+                      <SelectItem value="friendly">Friendly</SelectItem>
+                      <SelectItem value="enthusiastic">Enthusiastic</SelectItem>
+                      <SelectItem value="formal">Formal</SelectItem>
+                      <SelectItem value="creative">Creative</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div>
+                  <Label className="block text-sm font-medium mb-1">Additional Customization Instructions</Label>
+                  <Textarea 
+                    className="w-full" 
+                    rows={2} 
+                    placeholder="Any specific instructions on how you want your cover letter to be customized..."
+                  />
+                </div>
+                
+                <div>
+                  <Label className="block text-sm font-medium mb-1">Why This Opportunity Excites You</Label>
                   <Textarea 
                     className="w-full" 
                     rows={3} 
-                    placeholder="Add researched information about the company culture, team dynamics, or any insider information that could help personalize your cover letter..."
+                    placeholder="Write 3-5 sentences explaining why you're excited about this specific opportunity and what attracts you to the company..."
                   />
                 </div>
+                
                 <div>
-                  <label className="block text-sm font-medium mb-1">Recipient (if known)</label>
-                  <input type="text" className="w-full p-2 border rounded-md" placeholder="Hiring Manager / Name" />
+                  <Label className="block text-sm font-medium mb-1">Your Personal Value Proposition</Label>
+                  <Textarea 
+                    className="w-full" 
+                    rows={3} 
+                    placeholder="Describe in 3-5 sentences what unique strengths, skills, or experiences you bring to the role..."
+                  />
                 </div>
-              </div>
-            </div>
-            
-            <div>
-              <h3 className="text-sm font-medium mb-3">3. Cover Letter Style</h3>
-              <Select>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Choose a style" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="professional">Professional</SelectItem>
-                  <SelectItem value="friendly">Friendly</SelectItem>
-                  <SelectItem value="enthusiastic">Enthusiastic</SelectItem>
-                  <SelectItem value="formal">Formal</SelectItem>
-                  <SelectItem value="creative">Creative</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium mb-1">Additional Customization Instructions</label>
-              <Textarea 
-                className="w-full" 
-                rows={2} 
-                placeholder="Any specific instructions on how you want your cover letter to be customized..."
-              />
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium mb-1">Why This Opportunity Excites You</label>
-              <Textarea 
-                className="w-full" 
-                rows={3} 
-                placeholder="Write 3-5 sentences explaining why you're excited about this specific opportunity and what attracts you to the company..."
-              />
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium mb-1">Your Personal Value Proposition</label>
-              <Textarea 
-                className="w-full" 
-                rows={3} 
-                placeholder="Describe in 3-5 sentences what unique strengths, skills, or experiences you bring to the role..."
-              />
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium mb-1">Optional Personal Touch</label>
-              <Textarea 
-                className="w-full" 
-                rows={2} 
-                placeholder="Share any personal anecdotes, fun facts, or brief stories (2-3 sentences) that showcase your personality..."
-              />
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Button className="w-full" disabled={!selectedCV}>
-              <FilePenLine className="mr-2 h-4 w-4" /> Generate Cover Letter
-            </Button>
-          </CardFooter>
+                
+                <div>
+                  <Label className="block text-sm font-medium mb-1">Optional Personal Touch</Label>
+                  <Textarea 
+                    className="w-full" 
+                    rows={2} 
+                    placeholder="Share any personal anecdotes, fun facts, or brief stories (2-3 sentences) that showcase your personality..."
+                  />
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full" disabled={!selectedCV} type="submit">
+                  <FilePenLine className="mr-2 h-4 w-4" /> Generate Cover Letter
+                </Button>
+              </CardFooter>
+            </form>
+          </Form>
         </Card>
         
         <h2 className="text-xl font-semibold mt-2">Recent Cover Letters</h2>
