@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import DashboardLayout from '@/components/dashboard/Dashboard';
@@ -6,10 +7,11 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Save } from 'lucide-react';
 import { Form } from "@/components/ui/form";
 import ProfileStepContent from '@/components/profile/ProfileStepContent';
-import { getUserProfile, updateUserProfile } from '@/services/userService';
+import { getUserProfile, updateUserProfile, createUserProfile } from '@/services/userService';
 import { getCareerProfile, upsertCareerProfile } from '@/services/careerProfileService';
 import { useToast } from '@/hooks/use-toast';
 import { useAuthContext } from '@/context/AuthContext';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 const ProfilePage = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -17,6 +19,8 @@ const ProfilePage = () => {
   const { toast } = useToast();
   const { user, loading } = useAuthContext();
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   
   const form = useForm({
     defaultValues: {
@@ -38,6 +42,7 @@ const ProfilePage = () => {
       
       try {
         setIsLoading(true);
+        setError(null);
         
         // Load user profile data
         const userProfile = await getUserProfile();
@@ -60,6 +65,7 @@ const ProfilePage = () => {
         }
       } catch (error) {
         console.error('Error loading user data:', error);
+        setError('Failed to load your profile data. Please try again later.');
         toast({
           title: "Error",
           description: "Failed to load your profile data",
@@ -105,38 +111,84 @@ const ProfilePage = () => {
   
   const onSubmit = async (data: any) => {
     try {
+      setIsSubmitting(true);
+      setError(null);
+      
       if (currentStep === 1) {
+        // Parse location into city and country
+        let locationCity = '';
+        let locationCountry = '';
+        
+        if (data.location && data.location.includes(',')) {
+          const [city, country] = data.location.split(',').map((s: string) => s.trim());
+          locationCity = city;
+          locationCountry = country;
+        } else {
+          // If no comma, assume it's all city
+          locationCity = data.location.trim();
+          locationCountry = '';
+        }
+        
         // Save basic info to users table
-        const [city, country] = data.location.split(',').map((s: string) => s.trim());
-        await updateUserProfile({
-          full_name: data.fullName,
-          email: data.email,
-          phone: data.phone,
-          location_city: city,
-          location_country: country || '',
-          professional_headline: data.headline,
-          linkedin_url: data.linkedin,
-          github_url: data.github,
-        });
-        
-        toast({
-          title: "Success",
-          description: "Basic information saved successfully",
-        });
-        
-        nextStep();
+        try {
+          const existingProfile = await getUserProfile();
+          
+          const userData = {
+            full_name: data.fullName,
+            email: data.email,
+            phone: data.phone,
+            location_city: locationCity,
+            location_country: locationCountry || '',
+            professional_headline: data.headline,
+            linkedin_url: data.linkedin,
+            github_url: data.github,
+          };
+          
+          if (existingProfile) {
+            await updateUserProfile(userData);
+          } else {
+            await createUserProfile(userData);
+          }
+          
+          toast({
+            title: "Success",
+            description: "Basic information saved successfully",
+          });
+          
+          nextStep();
+        } catch (error: any) {
+          console.error('Error saving user profile:', error);
+          setError(`Failed to save profile: ${error.message || 'Unknown error'}`);
+          toast({
+            title: "Error",
+            description: `Failed to save your profile data: ${error.message || 'Unknown error'}`,
+            variant: "destructive",
+          });
+          return;
+        }
       } else if (currentStep === 2) {
         // Save career objective to career_profiles table
-        await upsertCareerProfile({
-          career_objective: data.careerObjective,
-        });
-        
-        toast({
-          title: "Success",
-          description: "Career objective saved successfully",
-        });
-        
-        nextStep();
+        try {
+          await upsertCareerProfile({
+            career_objective: data.careerObjective,
+          });
+          
+          toast({
+            title: "Success",
+            description: "Career objective saved successfully",
+          });
+          
+          nextStep();
+        } catch (error: any) {
+          console.error('Error saving career objective:', error);
+          setError(`Failed to save career objective: ${error.message || 'Unknown error'}`);
+          toast({
+            title: "Error",
+            description: `Failed to save your career objective: ${error.message || 'Unknown error'}`,
+            variant: "destructive",
+          });
+          return;
+        }
       } else if (currentStep === totalSteps) {
         // Final save of all profile data
         toast({
@@ -147,13 +199,16 @@ const ProfilePage = () => {
         // Save other steps and proceed
         nextStep();
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error saving profile:', error);
+      setError(`An unexpected error occurred: ${error.message || 'Unknown error'}`);
       toast({
         title: "Error",
         description: "Failed to save your profile data",
         variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
   
@@ -186,6 +241,12 @@ const ProfilePage = () => {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <CardContent className="space-y-4">
+                {error && (
+                  <Alert variant="destructive" className="mb-4">
+                    <AlertTitle>Error</AlertTitle>
+                    <AlertDescription>{error}</AlertDescription>
+                  </Alert>
+                )}
                 <ProfileStepContent currentStep={currentStep} form={form} />
               </CardContent>
               <CardFooter className="flex justify-between">
@@ -193,17 +254,17 @@ const ProfilePage = () => {
                   type="button"
                   variant="outline" 
                   onClick={prevStep} 
-                  disabled={currentStep === 1}
+                  disabled={currentStep === 1 || isSubmitting}
                 >
                   Previous
                 </Button>
                 {currentStep < totalSteps ? (
-                  <Button type="submit">
-                    Next <ArrowRight className="ml-2 h-4 w-4" />
+                  <Button type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? 'Saving...' : 'Next'} {!isSubmitting && <ArrowRight className="ml-2 h-4 w-4" />}
                   </Button>
                 ) : (
-                  <Button type="submit">
-                    Save Profile <Save className="ml-2 h-4 w-4" />
+                  <Button type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? 'Saving...' : 'Save Profile'} {!isSubmitting && <Save className="ml-2 h-4 w-4" />}
                   </Button>
                 )}
               </CardFooter>

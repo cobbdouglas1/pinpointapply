@@ -52,9 +52,29 @@ export const upsertCareerProfile = async (profile: Partial<CareerProfile>): Prom
       if (error) throw error;
       return data as CareerProfile;
     } else {
+      // Check if user exists in users table
+      const { data: userData, error: userError } = await supabase
+        .from('users')
+        .select('id')
+        .eq('id', user.user.id)
+        .single();
+      
+      if (userError && userError.code !== 'PGRST116') {
+        throw userError;
+      }
+      
+      if (!userData) {
+        throw new Error('User profile must be created before career profile');
+      }
+      
       // Create new profile
       const newProfile = {
         user_id: user.user.id,
+        skills_hard: [],
+        skills_soft: [],
+        work_experience: [],
+        education: [],
+        languages: [],
         ...profile,
       };
       
