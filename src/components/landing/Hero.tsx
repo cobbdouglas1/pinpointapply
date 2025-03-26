@@ -44,24 +44,19 @@ const Hero = () => {
           </div>
           
           <div className={`relative transition-all duration-1000 delay-700 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">
-              How to Turn Job Hunting into Job Winning
-            </h2>
-            
             <div className="relative rounded-xl overflow-hidden shadow-2xl">
               {/* Marketing image */}
               <img 
                 src="/lovable-uploads/5ed00384-d043-4cb0-a77d-b7dd3e3773cd.png" 
                 alt="Job hunting illustration" 
-                className="w-full rounded-xl"
+                className="w-full h-auto rounded-xl"
               />
-              
-              {/* Percentage indicator */}
-              <div className="absolute -right-6 bottom-10 glass-card py-2 px-4 rounded-lg shadow-lg flex items-center space-x-2">
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                <span className="text-sm font-medium">92% Match</span>
-              </div>
             </div>
+            
+            {/* Title now placed below the image */}
+            <p className="mt-4 text-center text-lg font-medium text-gray-800 italic">
+              Turn your Job Hunting into Job Winning with Pinpoint Apply.
+            </p>
           </div>
         </div>
       </div>
