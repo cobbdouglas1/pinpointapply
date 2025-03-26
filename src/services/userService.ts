@@ -41,7 +41,7 @@ export const updateUserProfile = async (profile: Partial<UserProfile>): Promise<
     const existingProfile = await getUserProfile();
     
     if (existingProfile) {
-      // Update existing profile
+      // For updates, we can use partial data since we're only updating specific fields
       const { data, error } = await supabase
         .from('users')
         .update(profile)
@@ -52,10 +52,23 @@ export const updateUserProfile = async (profile: Partial<UserProfile>): Promise<
       if (error) throw error;
       return data as UserProfile;
     } else {
-      // Create new profile
+      // For new profiles, we need to ensure all required fields are present
+      // Make sure we have values for all required fields
+      if (!profile.email || !profile.full_name || !profile.phone || 
+          !profile.location_city || !profile.location_country) {
+        throw new Error('Missing required fields for user profile');
+      }
+      
       const newProfile = {
         id: authUser.user.id,
-        ...profile,
+        email: profile.email,
+        full_name: profile.full_name,
+        phone: profile.phone,
+        location_city: profile.location_city,
+        location_country: profile.location_country,
+        professional_headline: profile.professional_headline || null,
+        linkedin_url: profile.linkedin_url || null,
+        github_url: profile.github_url || null,
       };
       
       const { data, error } = await supabase
@@ -81,10 +94,24 @@ export const createUserProfile = async (profile: Partial<UserProfile>): Promise<
       throw new Error('User not authenticated');
     }
     
-    // Create user profile
+    // For new profiles, we need to ensure all required fields are present
+    // Make sure we have values for all required fields
+    if (!profile.email || !profile.full_name || !profile.phone || 
+        !profile.location_city || !profile.location_country) {
+      throw new Error('Missing required fields for user profile');
+    }
+    
+    // Create user profile with all required fields
     const newProfile = {
       id: authUser.user.id,
-      ...profile,
+      email: profile.email,
+      full_name: profile.full_name,
+      phone: profile.phone,
+      location_city: profile.location_city,
+      location_country: profile.location_country,
+      professional_headline: profile.professional_headline || null,
+      linkedin_url: profile.linkedin_url || null,
+      github_url: profile.github_url || null,
     };
     
     const { data, error } = await supabase
