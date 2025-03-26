@@ -4,10 +4,10 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useAuth } from '@/services/authService';
+import { ArrowLeft } from 'lucide-react';
 
 const Login = () => {
   const { handleSignIn, handleSocialSignIn } = useAuth();
@@ -29,6 +29,13 @@ const Login = () => {
   
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="absolute top-4 left-4">
+        <Link to="/" className="flex items-center text-gray-600 hover:text-primary transition-colors">
+          <ArrowLeft className="w-5 h-5 mr-1" />
+          <span>Back to Home</span>
+        </Link>
+      </div>
+      
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-center text-2xl font-bold">Sign in to your account</CardTitle>

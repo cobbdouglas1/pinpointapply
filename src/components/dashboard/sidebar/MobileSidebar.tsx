@@ -4,10 +4,12 @@ import { Link, NavLink } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { SidebarProps, navItems, bottomNavItems } from './types';
+import { useAuth } from '@/services/authService';
 
 const MobileSidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(isOpen);
   const [isAnimating, setIsAnimating] = useState(false);
+  const { handleSignOut } = useAuth();
   
   useEffect(() => {
     setIsDrawerOpen(isOpen);
@@ -42,8 +44,7 @@ const MobileSidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
       >
         <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200">
           <Link to="/" className="flex items-center">
-            <div className="text-primary font-bold text-lg mr-1">PinPoint</div>
-            <div className="font-medium text-lg">Apply</div>
+            <img src="/lovable-uploads/e90c4387-4554-47b1-a0fd-99da01b27d96.png" alt="PinPoint Apply" className="h-8" />
           </Link>
           <button
             onClick={toggleDrawer}
@@ -120,7 +121,10 @@ const MobileSidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
             })}
             <div className="px-3 py-2 mt-4">
               <div className="border-t border-gray-200 pt-4">
-                <button className="flex items-center text-sm font-medium text-gray-700 hover:text-primary transition-colors">
+                <button 
+                  onClick={handleSignOut}
+                  className="flex items-center text-sm font-medium text-gray-700 hover:text-primary transition-colors"
+                >
                   <LogOut className="w-5 h-5 mr-3 text-gray-500" />
                   Log Out
                 </button>

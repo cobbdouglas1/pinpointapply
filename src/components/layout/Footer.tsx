@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { 
   Github, 
@@ -16,11 +15,9 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-1">
-            <div className="flex items-center">
-              <div className="text-primary font-bold text-xl mr-1">PinPoint</div>
-              <div className="font-medium text-xl">Apply</div>
-              <div className="ml-1 w-3 h-3 rounded-full bg-primary"></div>
-            </div>
+            <Link to="/" className="inline-block">
+              <img src="/lovable-uploads/e90c4387-4554-47b1-a0fd-99da01b27d96.png" alt="PinPoint Apply" className="h-12" />
+            </Link>
             <p className="mt-4 text-sm text-gray-600 max-w-xs">
               AI-crafted CVs & Cover Letters tailored to your profile and job descriptions.
             </p>

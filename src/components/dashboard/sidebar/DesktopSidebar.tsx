@@ -3,8 +3,11 @@ import { Link, NavLink } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { SidebarProps, navItems, bottomNavItems } from './types';
+import { useAuth } from '@/services/authService';
 
 const DesktopSidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
+  const { handleSignOut } = useAuth();
+  
   return (
     <div 
       className={cn(
@@ -18,13 +21,12 @@ const DesktopSidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
       )}>
         {isOpen && (
           <Link to="/" className="flex items-center">
-            <div className="text-primary font-bold text-lg mr-1">PinPoint</div>
-            <div className="font-medium text-lg">Apply</div>
+            <img src="/lovable-uploads/e90c4387-4554-47b1-a0fd-99da01b27d96.png" alt="PinPoint Apply" className="h-10" />
           </Link>
         )}
         {!isOpen && (
-          <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-            <span className="text-sm font-medium text-primary">P</span>
+          <div className="w-8 h-8 rounded-full flex items-center justify-center">
+            <img src="/lovable-uploads/e90c4387-4554-47b1-a0fd-99da01b27d96.png" alt="PinPoint" className="h-8" />
           </div>
         )}
         <button
@@ -121,8 +123,8 @@ const DesktopSidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
               "border-t border-gray-200 pt-4",
               !isOpen && "flex justify-center"
             )}>
-              <Link 
-                to="/logout" 
+              <button 
+                onClick={handleSignOut}
                 className={cn(
                   "flex items-center text-sm font-medium text-gray-700 hover:text-primary transition-colors",
                   !isOpen && "justify-center"
@@ -134,7 +136,7 @@ const DesktopSidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
                   isOpen ? "w-5 h-5 mr-3" : "w-6 h-6"
                 )} />
                 {isOpen && "Log Out"}
-              </Link>
+              </button>
             </div>
           </div>
         </div>

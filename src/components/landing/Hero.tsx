@@ -44,38 +44,23 @@ const Hero = () => {
           </div>
           
           <div className={`relative transition-all duration-1000 delay-700 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <div className="relative rounded-xl overflow-hidden shadow-2xl">
-              {/* Mock CV preview - replace with actual image in production */}
-              <div className="aspect-[4/3] bg-white p-6 border border-gray-100">
-                <div className="h-8 w-40 bg-gray-100 rounded-md mb-4"></div>
-                <div className="h-4 w-32 bg-gray-100 rounded-md mb-6"></div>
-                <div className="space-y-2">
-                  <div className="h-3 w-full bg-gray-100 rounded-md"></div>
-                  <div className="h-3 w-5/6 bg-gray-100 rounded-md"></div>
-                  <div className="h-3 w-4/6 bg-gray-100 rounded-md"></div>
-                </div>
-                <div className="mt-6 mb-2 h-4 w-20 bg-gray-100 rounded-md"></div>
-                <div className="space-y-2">
-                  <div className="h-3 w-full bg-gray-100 rounded-md"></div>
-                  <div className="h-3 w-full bg-gray-100 rounded-md"></div>
-                  <div className="h-3 w-4/6 bg-gray-100 rounded-md"></div>
-                </div>
-              </div>
-              
-              {/* Floating elements */}
-              <div className="absolute top-4 right-4 w-24 h-24 bg-primary/10 rounded-lg shadow-lg transform rotate-6 animate-subtle-float"></div>
-              <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-gray-100 rounded-lg shadow-lg transform -rotate-12 animate-subtle-float" style={{ animationDelay: '1s' }}></div>
-              <div className="absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white rounded-full shadow-xl flex items-center justify-center">
-                <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-                  <div className="w-6 h-6 bg-primary rounded-full"></div>
-                </div>
-              </div>
-            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">
+              How to Turn Job Hunting into Job Winning
+            </h2>
             
-            {/* Percentage indicator */}
-            <div className="absolute -right-6 bottom-10 glass-card py-2 px-4 rounded-lg shadow-lg flex items-center space-x-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span className="text-sm font-medium">92% Match</span>
+            <div className="relative rounded-xl overflow-hidden shadow-2xl">
+              {/* Marketing image */}
+              <img 
+                src="/lovable-uploads/5ed00384-d043-4cb0-a77d-b7dd3e3773cd.png" 
+                alt="Job hunting illustration" 
+                className="w-full rounded-xl"
+              />
+              
+              {/* Percentage indicator */}
+              <div className="absolute -right-6 bottom-10 glass-card py-2 px-4 rounded-lg shadow-lg flex items-center space-x-2">
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <span className="text-sm font-medium">92% Match</span>
+              </div>
             </div>
           </div>
         </div>

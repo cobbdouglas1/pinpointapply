@@ -1,6 +1,7 @@
-
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { toast as sonnerToast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 export const signUp = async (email: string, password: string, fullName: string) => {
   try {
@@ -89,14 +90,18 @@ export const signOut = async () => {
   try {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
+    sonnerToast.success('Signed out successfully');
+    return true;
   } catch (error) {
     console.error('Error signing out:', error);
+    sonnerToast.error('Failed to sign out');
     throw error;
   }
 };
 
 export const useAuth = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   
   const handleSignUp = async (email: string, password: string, fullName: string) => {
     try {
@@ -159,6 +164,7 @@ export const useAuth = () => {
         title: "Success",
         description: "Signed out successfully",
       });
+      navigate('/');
       return true;
     } catch (error: any) {
       toast({

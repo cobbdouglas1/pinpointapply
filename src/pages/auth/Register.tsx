@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useAuth } from '@/services/authService';
+import { ArrowLeft } from 'lucide-react';
 
 const Register = () => {
   const { handleSignUp, handleSocialSignIn } = useAuth();
@@ -29,6 +30,13 @@ const Register = () => {
   
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="absolute top-4 left-4">
+        <Link to="/" className="flex items-center text-gray-600 hover:text-primary transition-colors">
+          <ArrowLeft className="w-5 h-5 mr-1" />
+          <span>Back to Home</span>
+        </Link>
+      </div>
+      
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-center text-2xl font-bold">Create an account</CardTitle>

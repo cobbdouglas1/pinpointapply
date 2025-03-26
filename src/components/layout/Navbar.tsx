@@ -41,9 +41,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <div className="text-primary font-bold text-xl mr-1">PinPoint</div>
-              <div className="font-medium text-xl">Apply</div>
-              <div className="ml-1 w-4 h-4 rounded-full bg-primary animate-pulse-shadow"></div>
+              <img src="/lovable-uploads/e90c4387-4554-47b1-a0fd-99da01b27d96.png" alt="PinPoint Apply" className="h-8" />
             </Link>
           </div>
           
@@ -65,7 +63,7 @@ const Navbar = () => {
                 Log in
               </Button>
             </Link>
-            <Link to="/dashboard">
+            <Link to="/register">
               <Button className="bg-primary hover:bg-primary/90 text-white font-medium">
                 Sign up
               </Button>
@@ -107,7 +105,7 @@ const Navbar = () => {
                   Log in
                 </Button>
               </Link>
-              <Link to="/dashboard">
+              <Link to="/register">
                 <Button className="w-full justify-center">
                   Sign up
                 </Button>
