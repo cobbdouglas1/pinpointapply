@@ -11,7 +11,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { user } = useAuthContext();
+  const { user, signOut } = useAuthContext();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +37,11 @@ const Navbar = () => {
 
   const handleBackToDashboard = () => {
     navigate('/dashboard');
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/');
   };
 
   return (
@@ -79,6 +84,13 @@ const Navbar = () => {
                   onClick={handleBackToDashboard}
                 >
                   Dashboard
+                </Button>
+                <Button
+                  variant="outline"
+                  className="font-medium"
+                  onClick={handleSignOut}
+                >
+                  Log out
                 </Button>
                 <Avatar className="h-8 w-8 bg-primary/20">
                   <AvatarFallback className="text-primary">
@@ -142,6 +154,16 @@ const Navbar = () => {
                   }}
                 >
                   Dashboard
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-center"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    handleSignOut();
+                  }}
+                >
+                  Log out
                 </Button>
               </div>
             ) : (
