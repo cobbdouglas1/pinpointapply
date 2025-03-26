@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import DashboardLayout from '@/components/dashboard/Dashboard';
 
 const Dashboard = () => {
@@ -35,9 +35,11 @@ const Dashboard = () => {
               <div className="text-blue-500 bg-blue-50 text-xs px-2 py-1 rounded-full">Ready</div>
             </div>
             <p className="text-sm text-gray-600">Generate tailored CVs for specific job positions.</p>
-            <button className="mt-4 w-full py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-lg hover:bg-primary/20 transition-colors">
-              Create New CV
-            </button>
+            <Link to="/dashboard/cv">
+              <button className="mt-4 w-full py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-lg hover:bg-primary/20 transition-colors">
+                Create New CV
+              </button>
+            </Link>
           </div>
           
           <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
