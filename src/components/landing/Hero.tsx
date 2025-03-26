@@ -37,14 +37,14 @@ const Hero = () => {
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 transform group-hover:translate-x-1" />
                 </span>
               </Link>
-              <Link to="/samples" className="secondary-button">
+              <Link to="/examples" className="secondary-button">
                 See Examples
               </Link>
             </div>
           </div>
           
-          <div className={`relative transition-all duration-1000 delay-700 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <div className="relative rounded-xl overflow-hidden shadow-2xl">
+          <div className={`relative flex justify-center transition-all duration-1000 delay-700 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            <div className="relative rounded-xl overflow-hidden shadow-2xl max-w-md mx-auto">
               {/* Marketing image */}
               <img 
                 src="/lovable-uploads/5ed00384-d043-4cb0-a77d-b7dd3e3773cd.png" 
