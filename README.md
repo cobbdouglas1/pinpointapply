@@ -1,98 +1,68 @@
 
-# PinPoint Apply - AI-Powered Job Application Assistant
-
-![PinPoint Apply Logo](/lovable-uploads/6760be0d-efdd-46aa-b7de-c33b7bc0fe59.png)
-
-## Overview
-
-PinPoint Apply is an AI-powered platform that helps job seekers create personalized job applications, resumes, and cover letters tailored to specific job descriptions. The application streamlines the job hunting process by leveraging AI to create customized application materials that increase the chances of landing interviews.
-
-## Features
-
-- **AI-Powered CV Generation**: Create tailored CVs specific to job descriptions
-- **Cover Letter Creation**: Generate matching cover letters for your applications
-- **Career Profile Management**: Keep all your professional details in one place
-- **CV Upload & Parsing**: Upload existing CVs to auto-fill your career profile
-- **Application History**: Track all your job applications and their status
-- **User Authentication**: Secure login/signup with email, Google or GitHub
-
-## Technology Stack
-
-- **Frontend**: React, TypeScript, Tailwind CSS
-- **UI Components**: shadcn/ui
-- **State Management**: Context API, React Query
-- **Authentication & Backend**: Supabase
-- **Routing**: React Router
+# CareerForge CV & Cover Letter Generator
 
 ## Recent Updates
 
-### Latest Changes
+### Code Refactoring (Latest)
+- Refactored the Profile page component into smaller, more manageable components
+- Created reusable components for profile start options, progress bar, and form handling
+- Extracted profile form logic into a custom hook for better separation of concerns
+- Improved code organization for better maintainability
 
-- Added CV upload and parsing functionality to career profile creation
-- Users can now choose between creating a profile from scratch or uploading an existing CV
-- CV data is automatically extracted and used to pre-fill profile information
-- Updated application logo throughout the platform for consistent branding
-- Updated the marketing image on the landing page to better illustrate the job application journey
-- Fixed authentication issues that sometimes required multiple login attempts
-- Added loading states to the login form to prevent multiple submissions
-- Improved redirection after successful login/logout
-- Created Examples page to showcase CV templates
+### Career Profile Creation Enhancement
+- Added CV upload and parsing functionality to automatically fill career profile
+- Implemented a two-option approach: upload CV or create profile from scratch
+- Setup Supabase storage for CV file uploads
+- Added CV parsing service to extract information from uploaded documents
 
-### Fixed Issues
+### UI/UX Improvements
+- Updated logo throughout the application for consistent branding
+- Improved user interaction feedback with loading states and toast notifications
+- Enhanced mobile responsiveness across all pages
 
-- **Login Reliability**: Fixed intermittent login issues by adding loading states and improving the authentication flow
-- **UI Consistency**: Standardized the logo and branding elements across all pages
-- **Mobile Sidebar**: Updated to use shadcn/ui Sheet component for better reliability
-- **Responsive Design**: Enhanced responsive layout, particularly for the hero section
+### Authentication Fixes
+- Fixed login issue that occasionally required multiple attempts
+- Added proper loading states to the login form
+- Improved authentication flow and error handling
 
-## Project Structure
+## Features
 
-```
-src/
-├── components/           # UI components
-│   ├── dashboard/        # Dashboard-specific components
-│   ├── landing/          # Landing page components
-│   ├── layout/           # Layout components (Navbar, Footer, etc.)
-│   ├── profile/          # Profile-related components
-│   └── ui/               # Base UI components (from shadcn/ui)
-├── context/              # React context providers
-├── hooks/                # Custom React hooks
-├── integrations/         # Third-party integrations
-├── lib/                  # Utility libraries
-├── pages/                # Page components
-│   ├── auth/             # Authentication pages
-│   └── dashboard/        # Dashboard pages
-└── services/             # API and service functions
-```
+### Career Profile Management
+- Create comprehensive career profiles with guided step-by-step forms
+- Upload existing CV to automatically populate profile data
+- Store and manage professional information including:
+  - Personal details and contact information
+  - Career objectives
+  - Work experience
+  - Education and certifications
+  - Skills (technical and soft)
+  - Projects and portfolio items
+  - Extracurricular activities
+  - Awards and achievements
+  - Languages and additional information
 
-## Getting Started
+### Document Generation
+- Generate professionally formatted CVs based on profile data
+- Create targeted cover letters for specific job applications
+- Choose from multiple templates and styling options
+- Export documents in various formats
 
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Start the development server: `npm run dev`
-4. Open your browser to the local development URL (typically http://localhost:3000)
+### User Account
+- Secure authentication system
+- Persistent user profiles
+- Document history and management
 
-## Authentication
+## Upcoming Features
+- AI-powered job description analysis
+- Enhanced CV templates
+- Smart content suggestions
+- Additional export options
+- Version history for generated documents
+- Job board integration
+- Feedback system
 
-The application uses Supabase Authentication with the following methods:
-- Email/Password
-- Google OAuth
-- GitHub OAuth
-
-### Troubleshooting Login Issues
-
-If you encounter login issues:
-- Make sure your Supabase project has the correct redirect URLs configured
-- Check that email confirmations are set up properly
-- Review browser console for any errors
-
-## Deployment
-
-The application is designed to be deployed to any static hosting service. Recommended options:
-- Netlify
-- Vercel
-- GitHub Pages
-
-## License
-
-All rights reserved. This codebase is proprietary and confidential.
+## Technology Stack
+- React with TypeScript
+- Tailwind CSS for styling
+- Shadcn UI component library
+- Supabase for backend services (authentication, database, storage)
