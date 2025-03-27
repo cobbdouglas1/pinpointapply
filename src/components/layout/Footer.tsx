@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { 
   Github, 
@@ -16,7 +17,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-1">
             <Link to="/" className="inline-block">
-              <img src="/lovable-uploads/1269e343-26f6-4993-9f4f-502dd9754e22.png" alt="PinPoint Apply" className="h-12" />
+              <img src="/lovable-uploads/6760be0d-efdd-46aa-b7de-c33b7bc0fe59.png" alt="PinPoint Apply" className="h-12" />
             </Link>
             <p className="mt-4 text-sm text-gray-600 max-w-xs">
               AI-crafted CVs & Cover Letters tailored to your profile and job descriptions.

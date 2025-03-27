@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -55,7 +54,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <img 
-                src="/lovable-uploads/1269e343-26f6-4993-9f4f-502dd9754e22.png" 
+                src="/lovable-uploads/6760be0d-efdd-46aa-b7de-c33b7bc0fe59.png" 
                 alt="PinPoint Apply" 
                 className="h-10 md:h-12"
               />
@@ -125,7 +124,6 @@ const Navbar = () => {
         </div>
       </div>
       
-      {/* Mobile menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 animate-fade-in">

@@ -1,7 +1,7 @@
 
 # PinPoint Apply - AI-Powered Job Application Assistant
 
-![PinPoint Apply Logo](/public/lovable-uploads/1269e343-26f6-4993-9f4f-502dd9754e22.png)
+![PinPoint Apply Logo](/lovable-uploads/6760be0d-efdd-46aa-b7de-c33b7bc0fe59.png)
 
 ## Overview
 
@@ -27,8 +27,8 @@ PinPoint Apply is an AI-powered platform that helps job seekers create personali
 
 ### Latest Changes
 
+- Updated application logo throughout the platform for consistent branding
 - Updated the marketing image on the landing page to better illustrate the job application journey
-- Replaced logo throughout the application for consistent branding
 - Fixed authentication issues that sometimes required multiple login attempts
 - Added loading states to the login form to prevent multiple submissions
 - Improved redirection after successful login/logout
@@ -92,4 +92,3 @@ The application is designed to be deployed to any static hosting service. Recomm
 ## License
 
 All rights reserved. This codebase is proprietary and confidential.
-

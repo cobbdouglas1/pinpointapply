@@ -75,7 +75,7 @@ const DesktopSidebar = ({ isOpen, toggleSidebar, onLogout }: SidebarProps) => {
       <div className={`p-4 border-b border-gray-200 flex ${isOpen ? 'justify-between' : 'justify-center'} items-center`}>
         <div className={`${isOpen ? 'block' : 'hidden'}`}>
           <Link to="/" className="flex items-center">
-            <img src="/lovable-uploads/e90c4387-4554-47b1-a0fd-99da01b27d96.png" alt="PinPoint Apply" className="h-8" />
+            <img src="/lovable-uploads/6760be0d-efdd-46aa-b7de-c33b7bc0fe59.png" alt="PinPoint Apply" className="h-8" />
             <span className={`ml-2 text-lg font-medium transition-opacity duration-200 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
               PinPoint Apply
             </span>
@@ -83,7 +83,7 @@ const DesktopSidebar = ({ isOpen, toggleSidebar, onLogout }: SidebarProps) => {
         </div>
         <div className={`${!isOpen ? 'block' : 'hidden'}`}>
           <Link to="/">
-            <img src="/lovable-uploads/e90c4387-4554-47b1-a0fd-99da01b27d96.png" alt="PinPoint Apply" className="h-8" />
+            <img src="/lovable-uploads/6760be0d-efdd-46aa-b7de-c33b7bc0fe59.png" alt="PinPoint Apply" className="h-8" />
           </Link>
         </div>
         <button
