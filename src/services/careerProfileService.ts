@@ -1,3 +1,4 @@
+
 import { supabase } from '@/integrations/supabase/client';
 import type { Tables } from '@/lib/supabase';
 

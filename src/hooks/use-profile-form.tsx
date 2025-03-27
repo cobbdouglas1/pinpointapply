@@ -64,8 +64,10 @@ export const useProfileForm = () => {
         
         if (careerProfile) {
           form.setValue('careerObjective', careerProfile.career_objective || '');
-          // If there's an existing profile, start at step 1 (basic info)
-          if (currentStep === 0) setCurrentStep(1);
+          // If there's an existing profile and this is the start screen, move to step 1
+          if (currentStep === 0 && hasExistingProfile) {
+            setCurrentStep(1);
+          }
           // Load other career profile data into form
           // This would include work experience, education, skills, etc.
         }
@@ -85,7 +87,7 @@ export const useProfileForm = () => {
     if (user && !loading) {
       loadUserData();
     }
-  }, [user, loading, form, toast, currentStep]);
+  }, [user, loading, form, toast, currentStep, hasExistingProfile]);
   
   const nextStep = () => {
     if (currentStep < totalSteps) {

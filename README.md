@@ -3,7 +3,14 @@
 
 ## Recent Updates
 
-### Code Refactoring (Latest)
+### CV Upload and Parsing Functionality
+- Enhanced profile creation with CV upload capabilities
+- Added the ability to automatically pre-fill profile data by parsing uploaded CVs
+- Improved user experience with a clear choice between starting from scratch or uploading existing CV
+- Added seamless CV to career profile data mapping for efficient profile creation
+- Implemented file validation and secure storage for uploaded documents
+
+### Code Refactoring
 - Refactored the Profile page component into smaller, more manageable components
 - Created reusable components for profile start options, progress bar, and form handling
 - Extracted profile form logic into a custom hook for better separation of concerns
