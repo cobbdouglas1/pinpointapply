@@ -12,6 +12,7 @@ PinPoint Apply is an AI-powered platform that helps job seekers create personali
 - **AI-Powered CV Generation**: Create tailored CVs specific to job descriptions
 - **Cover Letter Creation**: Generate matching cover letters for your applications
 - **Career Profile Management**: Keep all your professional details in one place
+- **CV Upload & Parsing**: Upload existing CVs to auto-fill your career profile
 - **Application History**: Track all your job applications and their status
 - **User Authentication**: Secure login/signup with email, Google or GitHub
 
@@ -27,6 +28,9 @@ PinPoint Apply is an AI-powered platform that helps job seekers create personali
 
 ### Latest Changes
 
+- Added CV upload and parsing functionality to career profile creation
+- Users can now choose between creating a profile from scratch or uploading an existing CV
+- CV data is automatically extracted and used to pre-fill profile information
 - Updated application logo throughout the platform for consistent branding
 - Updated the marketing image on the landing page to better illustrate the job application journey
 - Fixed authentication issues that sometimes required multiple login attempts

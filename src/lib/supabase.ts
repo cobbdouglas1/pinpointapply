@@ -7,6 +7,27 @@ const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+// Initialize storage bucket for CV uploads
+export const initializeStorage = async () => {
+  try {
+    // Check if bucket already exists
+    const { data: buckets } = await supabase.storage.listBuckets();
+    
+    if (!buckets?.find(bucket => bucket.name === 'cv_uploads')) {
+      // Create bucket if it doesn't exist
+      const { error } = await supabase.storage.createBucket('cv_uploads', {
+        public: false
+      });
+      
+      if (error) {
+        console.error('Error creating storage bucket:', error);
+      }
+    }
+  } catch (error) {
+    console.error('Error initializing storage:', error);
+  }
+};
+
 export type Tables = {
   users: {
     id: string;
