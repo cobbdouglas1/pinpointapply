@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -12,6 +12,7 @@ import { ArrowLeft } from 'lucide-react';
 const Login = () => {
   const { handleSignIn, handleSocialSignIn } = useAuth();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   
   const form = useForm({
     defaultValues: {
@@ -21,9 +22,16 @@ const Login = () => {
   });
   
   const onSubmit = async (data: { email: string; password: string }) => {
-    const success = await handleSignIn(data.email, data.password);
-    if (success) {
-      navigate('/dashboard');
+    if (isLoading) return;
+    
+    setIsLoading(true);
+    try {
+      const success = await handleSignIn(data.email, data.password);
+      if (success) {
+        navigate('/dashboard');
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
   
@@ -72,7 +80,13 @@ const Login = () => {
                 )}
               />
               
-              <Button type="submit" className="w-full">Sign in</Button>
+              <Button 
+                type="submit" 
+                className="w-full" 
+                disabled={isLoading}
+              >
+                {isLoading ? 'Signing in...' : 'Sign in'}
+              </Button>
             </form>
           </Form>
           
@@ -91,6 +105,7 @@ const Login = () => {
                 type="button"
                 variant="outline"
                 onClick={() => handleSocialSignIn('google')}
+                disabled={isLoading}
               >
                 Google
               </Button>
@@ -98,6 +113,7 @@ const Login = () => {
                 type="button"
                 variant="outline"
                 onClick={() => handleSocialSignIn('github')}
+                disabled={isLoading}
               >
                 GitHub
               </Button>

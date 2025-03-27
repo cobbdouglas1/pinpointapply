@@ -78,7 +78,7 @@ const MobileSidebar = ({ isOpen, toggleSidebar, onLogout }: SidebarProps) => {
         <div className="flex h-full flex-col overflow-y-auto bg-white py-6 shadow-xl">
           <div className="px-4 flex items-center justify-between">
             <Link to="/" className="flex items-center" onClick={toggleSidebar}>
-              <img src="/lovable-uploads/e90c4387-4554-47b1-a0fd-99da01b27d96.png" alt="PinPoint Apply" className="h-8" />
+              <img src="/lovable-uploads/1269e343-26f6-4993-9f4f-502dd9754e22.png" alt="PinPoint Apply" className="h-8" />
               <span className="ml-2 text-lg font-medium">PinPoint Apply</span>
             </Link>
             <SheetClose className="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary">

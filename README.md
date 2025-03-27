@@ -1,69 +1,95 @@
-# Welcome to your Lovable project
 
-## Project info
+# PinPoint Apply - AI-Powered Job Application Assistant
 
-**URL**: https://lovable.dev/projects/e14cdd17-feca-44a1-b387-041e5d5f8d23
+![PinPoint Apply Logo](/public/lovable-uploads/1269e343-26f6-4993-9f4f-502dd9754e22.png)
 
-## How can I edit this code?
+## Overview
 
-There are several ways of editing your application.
+PinPoint Apply is an AI-powered platform that helps job seekers create personalized job applications, resumes, and cover letters tailored to specific job descriptions. The application streamlines the job hunting process by leveraging AI to create customized application materials that increase the chances of landing interviews.
 
-**Use Lovable**
+## Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e14cdd17-feca-44a1-b387-041e5d5f8d23) and start prompting.
+- **AI-Powered CV Generation**: Create tailored CVs specific to job descriptions
+- **Cover Letter Creation**: Generate matching cover letters for your applications
+- **Career Profile Management**: Keep all your professional details in one place
+- **Application History**: Track all your job applications and their status
+- **User Authentication**: Secure login/signup with email, Google or GitHub
 
-Changes made via Lovable will be committed automatically to this repo.
+## Technology Stack
 
-**Use your preferred IDE**
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **UI Components**: shadcn/ui
+- **State Management**: Context API, React Query
+- **Authentication & Backend**: Supabase
+- **Routing**: React Router
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Recent Updates
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Latest Changes
 
-Follow these steps:
+- Updated the marketing image on the landing page to better illustrate the job application journey
+- Replaced logo throughout the application for consistent branding
+- Fixed authentication issues that sometimes required multiple login attempts
+- Added loading states to the login form to prevent multiple submissions
+- Improved redirection after successful login/logout
+- Created Examples page to showcase CV templates
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Fixed Issues
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- **Login Reliability**: Fixed intermittent login issues by adding loading states and improving the authentication flow
+- **UI Consistency**: Standardized the logo and branding elements across all pages
+- **Mobile Sidebar**: Updated to use shadcn/ui Sheet component for better reliability
+- **Responsive Design**: Enhanced responsive layout, particularly for the hero section
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Project Structure
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+├── components/           # UI components
+│   ├── dashboard/        # Dashboard-specific components
+│   ├── landing/          # Landing page components
+│   ├── layout/           # Layout components (Navbar, Footer, etc.)
+│   ├── profile/          # Profile-related components
+│   └── ui/               # Base UI components (from shadcn/ui)
+├── context/              # React context providers
+├── hooks/                # Custom React hooks
+├── integrations/         # Third-party integrations
+├── lib/                  # Utility libraries
+├── pages/                # Page components
+│   ├── auth/             # Authentication pages
+│   └── dashboard/        # Dashboard pages
+└── services/             # API and service functions
 ```
 
-**Edit a file directly in GitHub**
+## Getting Started
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
+4. Open your browser to the local development URL (typically http://localhost:3000)
 
-**Use GitHub Codespaces**
+## Authentication
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The application uses Supabase Authentication with the following methods:
+- Email/Password
+- Google OAuth
+- GitHub OAuth
 
-## What technologies are used for this project?
+### Troubleshooting Login Issues
 
-This project is built with .
+If you encounter login issues:
+- Make sure your Supabase project has the correct redirect URLs configured
+- Check that email confirmations are set up properly
+- Review browser console for any errors
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Deployment
 
-## How can I deploy this project?
+The application is designed to be deployed to any static hosting service. Recommended options:
+- Netlify
+- Vercel
+- GitHub Pages
 
-Simply open [Lovable](https://lovable.dev/projects/e14cdd17-feca-44a1-b387-041e5d5f8d23) and click on Share -> Publish.
+## License
 
-## I want to use a custom domain - is that possible?
+All rights reserved. This codebase is proprietary and confidential.
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)

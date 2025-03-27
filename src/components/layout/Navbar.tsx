@@ -55,11 +55,11 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <img 
-                src="/lovable-uploads/e90c4387-4554-47b1-a0fd-99da01b27d96.png" 
+                src="/lovable-uploads/1269e343-26f6-4993-9f4f-502dd9754e22.png" 
                 alt="PinPoint Apply" 
-                className="h-16" 
+                className="h-10 md:h-12"
               />
-              <span className="ml-3 text-2xl font-semibold text-gray-900">PinPoint Apply</span>
+              <span className="ml-3 text-xl md:text-2xl font-semibold text-gray-900">PinPoint Apply</span>
             </Link>
           </div>
           

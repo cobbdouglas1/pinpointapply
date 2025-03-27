@@ -1,3 +1,4 @@
+
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { toast as sonnerToast } from 'sonner';
@@ -12,6 +13,7 @@ export const signUp = async (email: string, password: string, fullName: string) 
         data: {
           full_name: fullName,
         },
+        emailRedirectTo: `${window.location.origin}/dashboard`,
       },
     });
 
@@ -123,12 +125,21 @@ export const useAuth = () => {
 
   const handleSignIn = async (email: string, password: string) => {
     try {
-      await signInWithEmail(email, password);
-      toast({
-        title: "Success",
-        description: "Signed in successfully",
-      });
-      return true;
+      const data = await signInWithEmail(email, password);
+      if (data.session) {
+        toast({
+          title: "Success",
+          description: "Signed in successfully",
+        });
+        return true;
+      } else {
+        toast({
+          title: "Error",
+          description: "Authentication failed. Please try again.",
+          variant: "destructive",
+        });
+        return false;
+      }
     } catch (error: any) {
       toast({
         title: "Error",

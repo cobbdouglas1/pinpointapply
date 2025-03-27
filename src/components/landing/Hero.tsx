@@ -43,20 +43,15 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className={`relative flex justify-center transition-all duration-1000 delay-700 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <div className="relative rounded-xl overflow-hidden shadow-2xl max-w-md mx-auto">
-              {/* Marketing image */}
+          <div className={`flex justify-center items-center transition-all duration-1000 delay-700 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            <div className="rounded-xl overflow-hidden shadow-2xl w-full max-w-md">
+              {/* New marketing image */}
               <img 
-                src="/lovable-uploads/5ed00384-d043-4cb0-a77d-b7dd3e3773cd.png" 
-                alt="Job hunting illustration" 
-                className="w-full h-auto rounded-xl"
+                src="/lovable-uploads/1269e343-26f6-4993-9f4f-502dd9754e22.png" 
+                alt="Job hunting to job winning illustration" 
+                className="w-full h-auto"
               />
             </div>
-            
-            {/* Title now placed below the image */}
-            <p className="mt-4 text-center text-lg font-medium text-gray-800 italic">
-              Turn your Job Hunting into Job Winning with Pinpoint Apply.
-            </p>
           </div>
         </div>
       </div>
