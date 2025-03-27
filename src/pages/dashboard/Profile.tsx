@@ -20,9 +20,9 @@ const ProfilePage = () => {
     onSubmit
   } = useProfileForm();
   
-  const { loading } = useProfileForm().form.formState;
+  const { isLoading: formLoading } = form.formState;
   
-  if (loading || isLoading) {
+  if (formLoading || isLoading) {
     return (
       <DashboardLayout title="Career Profile">
         <div className="flex justify-center items-center h-64">
