@@ -4,10 +4,18 @@ import type { Database } from '../integrations/supabase/types';
 
 export type Tables<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Row'];
 
-// Initialize the Supabase client
+// Initialize the Supabase client with proper environment variables
+// Using a consistent client configuration across the application
 export const supabase = createClient<Database>(
-  import.meta.env.VITE_SUPABASE_URL || '',
-  import.meta.env.VITE_SUPABASE_ANON_KEY || ''
+  import.meta.env.VITE_SUPABASE_URL || 'https://ypgnkbzgridhtuctonhk.supabase.co',
+  import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwZ25rYnpncmlkaHR1Y3RvbmhrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI2OTAwNTUsImV4cCI6MjA1ODI2NjA1NX0.65BhOTcEvKty0c8sSeVnQmy_tU16iPiAhJm9KIC6lC0',
+  {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      storage: typeof window !== 'undefined' ? localStorage : undefined
+    }
+  }
 );
 
 // Initialize storage buckets

@@ -1,8 +1,7 @@
-
 import { supabase } from '@/integrations/supabase/client';
 import type { Tables } from '@/lib/supabase';
 
-export type CareerProfile = Omit<Tables['career_profiles'], 'created_at'>;
+export type CareerProfile = Tables<'career_profiles'>;
 
 export const getCareerProfile = async (): Promise<CareerProfile | null> => {
   try {

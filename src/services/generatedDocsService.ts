@@ -2,7 +2,7 @@
 import { supabase } from '@/integrations/supabase/client';
 import type { Tables } from '@/lib/supabase';
 
-export type GeneratedDoc = Omit<Tables['generated_docs'], 'created_at'>;
+export type GeneratedDoc = Omit<Tables<'generated_docs'>, 'created_at'>;
 
 export const getGeneratedDocs = async (): Promise<GeneratedDoc[]> => {
   try {

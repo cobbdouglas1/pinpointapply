@@ -1,8 +1,7 @@
-
 import { supabase } from '@/integrations/supabase/client';
 import type { Tables } from '@/lib/supabase';
 
-export type UserProfile = Omit<Tables['users'], 'created_at'>;
+export type UserProfile = Omit<Tables<'users'>, 'created_at'>;
 
 export const getUserProfile = async (): Promise<UserProfile | null> => {
   try {
