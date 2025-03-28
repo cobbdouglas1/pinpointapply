@@ -1,3 +1,4 @@
+
 import { supabase } from '@/integrations/supabase/client';
 import type { Tables } from '@/lib/supabase';
 
@@ -155,7 +156,11 @@ export const addWorkExperience = async (experience: any): Promise<CareerProfile>
       throw new Error('Career profile not found');
     }
     
-    const workExperience = profile.work_experience || [];
+    // Ensure work_experience is an array before attempting to use push
+    const workExperience = Array.isArray(profile.work_experience) 
+      ? [...profile.work_experience] 
+      : [];
+    
     workExperience.push(experience);
     
     return await upsertCareerProfile({ work_experience: workExperience });
@@ -169,8 +174,13 @@ export const updateWorkExperience = async (index: number, experience: any): Prom
   try {
     const profile = await getCareerProfile();
     
-    if (!profile || !profile.work_experience) {
-      throw new Error('Work experience not found');
+    if (!profile) {
+      throw new Error('Career profile not found');
+    }
+    
+    // Ensure work_experience is an array and has the element at the specified index
+    if (!Array.isArray(profile.work_experience) || !profile.work_experience[index]) {
+      throw new Error('Work experience entry not found');
     }
     
     const workExperience = [...profile.work_experience];
@@ -187,8 +197,13 @@ export const deleteWorkExperience = async (index: number): Promise<CareerProfile
   try {
     const profile = await getCareerProfile();
     
-    if (!profile || !profile.work_experience) {
-      throw new Error('Work experience not found');
+    if (!profile) {
+      throw new Error('Career profile not found');
+    }
+    
+    // Ensure work_experience is an array and has the element at the specified index
+    if (!Array.isArray(profile.work_experience) || !profile.work_experience[index]) {
+      throw new Error('Work experience entry not found');
     }
     
     const workExperience = [...profile.work_experience];
@@ -209,7 +224,11 @@ export const addEducation = async (education: any): Promise<CareerProfile> => {
       throw new Error('Career profile not found');
     }
     
-    const educationList = profile.education || [];
+    // Ensure education is an array before attempting to use push
+    const educationList = Array.isArray(profile.education) 
+      ? [...profile.education] 
+      : [];
+    
     educationList.push(education);
     
     return await upsertCareerProfile({ education: educationList });
