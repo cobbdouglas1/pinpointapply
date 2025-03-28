@@ -43,11 +43,11 @@ export const populateProfileFromCV = async (parsedData: any): Promise<CareerProf
     const careerProfileData: Partial<CareerProfile> = {
       user_id: userData.user.id,
       career_objective: parsedData.careerObjective || '',
-      skills_hard: parsedData.skills_hard || [],
-      skills_soft: parsedData.skills_soft || [],
-      work_experience: parsedData.work_experience || [],
-      education: parsedData.education || [],
-      languages: parsedData.languages || [],
+      skills_hard: Array.isArray(parsedData.skills_hard) ? parsedData.skills_hard : [],
+      skills_soft: Array.isArray(parsedData.skills_soft) ? parsedData.skills_soft : [],
+      work_experience: Array.isArray(parsedData.work_experience) ? parsedData.work_experience : [],
+      education: Array.isArray(parsedData.education) ? parsedData.education : [],
+      languages: Array.isArray(parsedData.languages) ? parsedData.languages : [],
     };
     
     // Use upsertCareerProfile to create or update the profile

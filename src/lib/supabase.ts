@@ -49,6 +49,7 @@ export const initializeStorage = async () => {
       
       if (createError) {
         console.error('Error creating storage bucket:', createError);
+        throw createError;
       } else {
         console.log('CV uploads bucket created successfully');
         
@@ -60,10 +61,12 @@ export const initializeStorage = async () => {
         
         if (policyError && policyError.message !== 'The resource already exists') {
           console.error('Error setting bucket policy:', policyError);
+          throw policyError;
         }
       }
     }
   } catch (error) {
     console.error('Error initializing storage:', error);
+    throw error;
   }
 };

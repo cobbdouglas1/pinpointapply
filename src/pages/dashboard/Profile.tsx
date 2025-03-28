@@ -5,6 +5,7 @@ import ProfileStartWrapper from '@/components/profile/ProfileStartWrapper';
 import ProfileFormWrapper from '@/components/profile/ProfileFormWrapper';
 import { useProfileForm } from '@/hooks/use-profile-form';
 import { initializeStorage } from '@/lib/supabase';
+import { useToast } from '@/hooks/use-toast';
 
 const ProfilePage = () => {
   const {
@@ -21,13 +22,22 @@ const ProfilePage = () => {
     onSubmit
   } = useProfileForm();
   
+  const { toast } = useToast();
+  
   // Extract form loading state
   const formLoading = form.formState.isLoading;
   
   // Initialize storage when component mounts
   useEffect(() => {
-    initializeStorage().catch(console.error);
-  }, []);
+    initializeStorage().catch(error => {
+      console.error('Failed to initialize storage:', error);
+      toast({
+        title: "Storage Initialization Failed",
+        description: "There was an issue setting up the file upload system. Please try again later.",
+        variant: "destructive",
+      });
+    });
+  }, [toast]);
   
   if (formLoading || isLoading) {
     return (
