@@ -3,6 +3,11 @@
 
 ## Recent Updates
 
+### Latest Lovable Version Integration
+- Updated to the latest Lovable framework version
+- Added component tagger plugin for improved development experience
+- Enhanced debugging capabilities and developer tooling
+
 ### CV Upload and Parsing Functionality
 - Enhanced profile creation with CV upload capabilities
 - Added the ability to automatically pre-fill profile data by parsing uploaded CVs
@@ -73,3 +78,4 @@
 - Tailwind CSS for styling
 - Shadcn UI component library
 - Supabase for backend services (authentication, database, storage)
+- Latest Lovable framework for improved development experience
