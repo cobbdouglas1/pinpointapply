@@ -1,9 +1,10 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import DashboardLayout from '@/components/dashboard/Dashboard';
 import ProfileStartWrapper from '@/components/profile/ProfileStartWrapper';
 import ProfileFormWrapper from '@/components/profile/ProfileFormWrapper';
 import { useProfileForm } from '@/hooks/use-profile-form';
+import { initializeStorage } from '@/lib/supabase';
 
 const ProfilePage = () => {
   const {
@@ -20,7 +21,13 @@ const ProfilePage = () => {
     onSubmit
   } = useProfileForm();
   
-  const { isLoading: formLoading } = form.formState;
+  // Extract form loading state
+  const formLoading = form.formState.isLoading;
+  
+  // Initialize storage when component mounts
+  useEffect(() => {
+    initializeStorage().catch(console.error);
+  }, []);
   
   if (formLoading || isLoading) {
     return (

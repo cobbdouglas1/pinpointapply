@@ -1,72 +1,61 @@
 
-import { createClient } from '@supabase/supabase-js';
+import { RealtimeChannel, SupabaseClient, createClient } from '@supabase/supabase-js';
+import type { Database } from '../integrations/supabase/types';
 
-// Use the Supabase URL and anon key directly
-const supabaseUrl = "https://ypgnkbzgridhtuctonhk.supabase.co";
-const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwZ25rYnpncmlkaHR1Y3RvbmhrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI2OTAwNTUsImV4cCI6MjA1ODI2NjA1NX0.65BhOTcEvKty0c8sSeVnQmy_tU16iPiAhJm9KIC6lC0";
+export type Tables<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Row'];
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Initialize the Supabase client
+export const supabase = createClient<Database>(
+  import.meta.env.VITE_SUPABASE_URL || '',
+  import.meta.env.VITE_SUPABASE_ANON_KEY || ''
+);
 
-// Initialize storage bucket for CV uploads
+// Initialize storage buckets
 export const initializeStorage = async () => {
   try {
-    // Check if bucket already exists
-    const { data: buckets } = await supabase.storage.listBuckets();
+    // Check if the CV uploads bucket exists
+    const { data: buckets, error: bucketsError } = await supabase
+      .storage
+      .listBuckets();
     
-    if (!buckets?.find(bucket => bucket.name === 'cv_uploads')) {
-      // Create bucket if it doesn't exist
-      const { error } = await supabase.storage.createBucket('cv_uploads', {
-        public: false
-      });
+    if (bucketsError) {
+      console.error('Error checking storage buckets:', bucketsError);
+      return;
+    }
+    
+    const cvBucketExists = buckets.some(bucket => bucket.name === 'cv_uploads');
+    
+    // Create the CV uploads bucket if it doesn't exist
+    if (!cvBucketExists) {
+      const { error: createError } = await supabase
+        .storage
+        .createBucket('cv_uploads', {
+          public: false,
+          fileSizeLimit: 5242880, // 5MB in bytes
+          allowedMimeTypes: [
+            'application/pdf',
+            'application/msword',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+          ]
+        });
       
-      if (error) {
-        console.error('Error creating storage bucket:', error);
+      if (createError) {
+        console.error('Error creating storage bucket:', createError);
+      } else {
+        console.log('CV uploads bucket created successfully');
+        
+        // Set up bucket policy to allow authenticated uploads
+        const { error: policyError } = await supabase
+          .storage
+          .from('cv_uploads')
+          .createSignedUploadUrl('test-policy-file');
+        
+        if (policyError && policyError.message !== 'The resource already exists') {
+          console.error('Error setting bucket policy:', policyError);
+        }
       }
     }
   } catch (error) {
     console.error('Error initializing storage:', error);
   }
-};
-
-export type Tables = {
-  users: {
-    id: string;
-    full_name: string;
-    email: string;
-    phone: string;
-    location_city: string;
-    location_country: string;
-    linkedin_url?: string;
-    github_url?: string;
-    professional_headline?: string;
-    created_at: string;
-  };
-  career_profiles: {
-    id: string;
-    user_id: string;
-    career_objective?: string;
-    skills_hard: any;
-    skills_soft: any;
-    work_experience: any;
-    education: any;
-    certifications?: any;
-    projects?: any;
-    volunteering?: any;
-    awards?: any;
-    languages: any;
-    extras?: any;
-    created_at: string;
-  };
-  generated_docs: {
-    id: string;
-    user_id: string;
-    doc_type: 'CV' | 'CoverLetter';
-    template_used: string;
-    company_info?: string;
-    value_proposition?: string;
-    personal_touch?: string;
-    additional_notes?: string;
-    final_doc_url: string;
-    created_at: string;
-  };
 };

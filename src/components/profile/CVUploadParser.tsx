@@ -53,47 +53,53 @@ const CVUploadParser = ({ onParseComplete, onCancel }: CVUploadParserProps) => {
       setIsUploading(true);
       setError(null);
       
-      // Upload file to temporary storage
+      // Upload file to storage
       const fileName = `cv_${user.id}_${Date.now()}.${file.name.split('.').pop()}`;
-      const { error: uploadError } = await supabase.storage
+      const { error: uploadError, data } = await supabase.storage
         .from('cv_uploads')
-        .upload(fileName, file);
+        .upload(fileName, file, {
+          cacheControl: '3600',
+          upsert: false
+        });
       
-      if (uploadError) throw new Error(uploadError.message);
-      
-      // Get public URL for the file
-      const { data: urlData } = supabase.storage
-        .from('cv_uploads')
-        .getPublicUrl(fileName);
-      
-      if (!urlData) throw new Error('Failed to get file URL');
+      if (uploadError) {
+        console.error('Upload error:', uploadError);
+        throw new Error(uploadError.message);
+      }
       
       // Start parsing
       setIsUploading(false);
       setIsParsing(true);
       
-      // Simulate CV parsing - In a real app, this would call a parsing service
-      // For this demo, we'll simulate extracting some basic information
-      setTimeout(() => {
-        const parsedData = simulateParsingCV(file.name);
-        
-        // Notify successful parsing
-        toast({
-          title: "CV Parsed Successfully",
-          description: "Your career profile has been pre-filled with information from your CV.",
-        });
-        
-        // Clean up the temporary file
-        supabase.storage
-          .from('cv_uploads')
-          .remove([fileName])
-          .then(() => console.log('Temporary file removed'));
-        
-        setIsParsing(false);
-        onParseComplete(parsedData);
-      }, 2000);
+      // For now, use the simulated parsing as we're not implementing a real CV parser
+      // In a production app, you'd call a parsing service API here
+      const parsedData = extractDataFromCV(file.name);
+      
+      // Wait a moment to simulate processing time
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Clean up the file after parsing
+      const { error: deleteError } = await supabase.storage
+        .from('cv_uploads')
+        .remove([fileName]);
+      
+      if (deleteError) {
+        console.warn('Could not delete temporary file:', deleteError);
+      }
+      
+      setIsParsing(false);
+      
+      // Notify successful parsing
+      toast({
+        title: "CV Parsed Successfully",
+        description: "Your career profile has been pre-filled with information from your CV.",
+      });
+      
+      // Pass the parsed data back
+      onParseComplete(parsedData);
       
     } catch (err: any) {
+      console.error('Error processing CV:', err);
       setIsUploading(false);
       setIsParsing(false);
       setError(err.message || 'An error occurred while processing your CV');
@@ -105,13 +111,18 @@ const CVUploadParser = ({ onParseComplete, onCancel }: CVUploadParserProps) => {
     }
   };
   
-  // This function simulates parsing a CV - in a real app, you would use a proper CV parsing service
-  const simulateParsingCV = (filename: string) => {
-    // Generate some mock data based on the filename to simulate parsed results
+  // This function simulates extracting data from a CV
+  // In a real app, you would use a proper CV parsing service or API
+  const extractDataFromCV = (filename: string) => {
+    // Generate some sample data based on the filename
+    const nameBase = filename.split('.')[0].replace(/[_-]/g, ' ');
+    const skills = ['JavaScript', 'TypeScript', 'React', 'Node.js', 'HTML', 'CSS'];
+    const randomSkills = skills.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * 3) + 3);
+    
     return {
-      fullName: filename.split('.')[0].replace(/_/g, ' '),
-      email: `${filename.split('.')[0].toLowerCase().replace(/_/g, '.')}@example.com`,
-      phone: '+1 (555) 123-4567',
+      fullName: nameBase.replace(/cv|resume/gi, '').trim(),
+      email: `${nameBase.toLowerCase().replace(/\s+/g, '.')}@example.com`,
+      phone: `+1 ${Math.floor(Math.random() * 900) + 100}-${Math.floor(Math.random() * 900) + 100}-${Math.floor(Math.random() * 9000) + 1000}`,
       location: 'New York, USA',
       headline: 'Software Developer',
       careerObjective: 'Passionate software developer with experience in web technologies, seeking opportunities to create innovative solutions.',
@@ -135,7 +146,7 @@ const CVUploadParser = ({ onParseComplete, onCancel }: CVUploadParserProps) => {
           description: 'Graduated with honors. Focused on software engineering and web development.'
         }
       ],
-      skills_hard: ['JavaScript', 'TypeScript', 'React', 'Node.js', 'HTML', 'CSS'],
+      skills_hard: randomSkills,
       skills_soft: ['Communication', 'Problem Solving', 'Teamwork', 'Time Management'],
       languages: [
         { name: 'English', proficiency: 'Native' },

@@ -125,10 +125,10 @@ export const useProfileForm = () => {
       // Reload user data to show the populated form
       const userProfile = await getUserProfile();
       if (userProfile) {
-        form.setValue('fullName', userProfile.full_name);
-        form.setValue('email', userProfile.email);
-        form.setValue('phone', userProfile.phone);
-        form.setValue('location', `${userProfile.location_city}, ${userProfile.location_country}`);
+        form.setValue('fullName', userProfile.full_name || '');
+        form.setValue('email', userProfile.email || '');
+        form.setValue('phone', userProfile.phone || '');
+        form.setValue('location', `${userProfile.location_city || ''}, ${userProfile.location_country || ''}`);
         form.setValue('headline', userProfile.professional_headline || '');
         form.setValue('linkedin', userProfile.linkedin_url || '');
         form.setValue('github', userProfile.github_url || '');
@@ -138,6 +138,7 @@ export const useProfileForm = () => {
       const careerProfile = await getCareerProfile();
       if (careerProfile) {
         form.setValue('careerObjective', careerProfile.career_objective || '');
+        setHasExistingProfile(true);
         // Load other career profile data into form
       }
       
