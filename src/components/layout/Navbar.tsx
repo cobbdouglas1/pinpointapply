@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -53,12 +54,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <img 
-                src="/lovable-uploads/6760be0d-efdd-46aa-b7de-c33b7bc0fe59.png" 
-                alt="PinPoint Apply" 
-                className="h-10 md:h-12"
-              />
-              <span className="ml-3 text-xl md:text-2xl font-semibold text-gray-900">PinPoint Apply</span>
+              <span className="text-2xl font-bold text-primary">PinPoint Apply</span>
             </Link>
           </div>
           
@@ -105,7 +101,7 @@ const Navbar = () => {
                   </Button>
                 </Link>
                 <Link to="/register">
-                  <Button className="bg-primary hover:bg-primary/90 text-white font-medium">
+                  <Button className="bg-primary hover:bg-primary/90 text-white font-medium rounded-md">
                     Sign up
                   </Button>
                 </Link>

@@ -26,7 +26,7 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: 'hsl(var(--primary))',
+					DEFAULT: '#26B9DC', // Bright turquoise blue from the design
 					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
@@ -56,7 +56,7 @@ export default {
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
+					primary: '#26B9DC', // Matching our primary color
 					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
 					accent: 'hsl(var(--sidebar-accent))',
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
@@ -129,8 +129,8 @@ export default {
 					'100%': { transform: 'translateX(-100%)' }
 				},
 				'pulse-shadow': {
-					'0%, 100%': { boxShadow: '0 0 0 rgba(59, 130, 246, 0)' },
-					'50%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.3)' }
+					'0%, 100%': { boxShadow: '0 0 0 rgba(38, 185, 220, 0)' },
+					'50%': { boxShadow: '0 0 20px rgba(38, 185, 220, 0.3)' }
 				}
 			},
 			animation: {
